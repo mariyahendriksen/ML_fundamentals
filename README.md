@@ -3,6 +3,7 @@ Resources for studying Machine Learning.
 
 ## Core books
 - Bishop's PRML
+- Hastie's Elements of SL
 - Murphy's ML
 - Goodfellow's DL
 
