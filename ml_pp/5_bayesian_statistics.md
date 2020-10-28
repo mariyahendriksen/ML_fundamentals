@@ -16,7 +16,7 @@ What quantities can be derived from the posterior p(Theta|D)? In this section we
 
 ### MAP estimation
 
-We can compute point estimate of an unkown quantity by computing the posterior mean, meadian, or mode.
+We can compute point estimate of an unkown quantity by computing the posterior mean, median, or mode.
 Posterior mode (aka MAP estimate) is often used because:
 - it can be represented as an optimization problem, hence, good algorithms exist for it
 - can be interpreted in non-bayesian terms (log prior of the regularizer)
@@ -36,12 +36,57 @@ Do not confuse with confidence intervals from frequentists statistics!
 
 Sometimes we have multiple input parameters and we want to compute the posterior distribution using these parameters. For example consider [this Amazon sellsers comparison case](https://www.johndcook.com/blog/2011/09/27/bayesian-amazon/).
 
-## Bayesian model selection
+## 5.3 Bayesian model selection
+
+Model selection problem: how to choose the best model among the set of models (family of parametric distributions) of different complexity?
+
+K-CV vs Bayesian model selection: K-fold cross-validation is less unefficient as it requires to fit a model K times. Bayesian model selection, on the other hand allows to compute posterior over models p(m|D), what boils down to computing p(D|m) (aka marginal likelihood, integrated likelihood, or the evidence of model m).
+
+### Bayesian Occam's razor
+Models with more parameters do not neccessarily have higher marginal likelihood.
+Conservation probability mass principle: complex models, which can predict many things, must spread their probability mass thinly. Hence, they will not obtain as large probability for any given data set as simpler models.
+
+### Computing the marignal likelihood (evidence) p(D|m)
+
+Easy to compute with conjugate priors.
+
+Can be also approximated with Bayesian information criterion (BIC)
+
+### Bayes factors
+
+Ratio of marginal likelihoods of two models (cf. p-values)
 
 ## Priors
 
-## Hierarchical Bayes
+Bayesian statistics relies on priors, i.e., certain assumptions about the world. There are some techniques to minimize impact of the priors
 
-## Empirical Bayes
+### Uninformative prior
+Let the data speak for itself!
 
-## Bayesian decision theory
+The right uninformative prior: Beta(1/2, 1/2).
+
+Important: always perform a sensitivity analysis to check how priors, likelihoods, and data preprocessing influence model behaviour. Good model should be non-sensitive to those.
+
+### Robust priors
+
+Robust priors have heavy tails which avoids forcing things to be too close to the prior mean. Drawback: can be computationally expensive.
+
+### Conjugate priors
+
+Less robust than robust priors but also less computationally expensive.
+
+
+## 5.5 Hierarchical Bayes
+
+Putting prior on priors.
+
+## 5.6 Empirical Bayes
+
+Computationally cheap approximation to inference in a hierarchical Bayesian model.
+
+## 5.7 Bayesian decision theory
+
+How to turn our updated beliefs about the world into actions.
+
+
+
